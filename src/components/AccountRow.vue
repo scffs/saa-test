@@ -63,8 +63,6 @@ watch(
 
 const onBlur = () => validateAndSave()
 const removeAccount = () => store.deleteAccount(props.account.id)
-
-console.log('tagError', tagError.value)
 </script>
 
 <template>
@@ -98,11 +96,10 @@ console.log('tagError', tagError.value)
     <template v-if="editable.type === 'Локальная'">
       <Password
         v-model="editable.password"
-        :feedback="false"
         placeholder="Пароль"
-        :inputClass="{ 'p-invalid': passwordError }"
-        class="cell password"
+        :class="['cell password', { 'p-invalid': passwordError }]"
         @blur="onBlur"
+        toggleMask
       />
     </template>
 
@@ -127,7 +124,7 @@ console.log('tagError', tagError.value)
 }
 
 .ldap-expand {
-  flex-basis: calc(186px + 186px + 16px); /* login + password + gap */
+  flex-basis: calc(186px + 214px + 16px); /* login + password + gap */
 }
 
 .password:empty {

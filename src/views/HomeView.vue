@@ -30,6 +30,7 @@ import { useAccountStore } from '@/stores/account.ts'
 import AccountRow from '@/components/AccountRow.vue'
 
 const accountStore = useAccountStore()
+accountStore.initDefaultAccount()
 
 const handleAddAccount = () => {
   accountStore.addAccount()
@@ -84,7 +85,7 @@ main {
 }
 .password {
   /** input width */
-  flex-basis: 186px;
+  flex-basis: 214px;
 }
 
 .delete {

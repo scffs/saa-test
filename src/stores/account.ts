@@ -29,9 +29,6 @@ export const useAccountStore = defineStore('accountStore', {
       })
     },
 
-    /**
-     * Updates an existing account identified by its ID.
-     */
     updateAccount(updatedAccount: Account) {
       const index = this.accounts.findIndex((acc) => acc.id === updatedAccount.id)
       if (index !== -1) {
@@ -39,11 +36,20 @@ export const useAccountStore = defineStore('accountStore', {
       }
     },
 
-    /**
-     * Deletes an account from the list by its ID.
-     */
     deleteAccount(accountId: string) {
       this.accounts = this.accounts.filter((acc) => acc.id !== accountId)
+    },
+
+    initDefaultAccount() {
+      if (this.accounts.length === 0) {
+        this.accounts.push({
+          id: uuidv4(),
+          tags: [{ text: 'тест' }],
+          type: 'Локальная',
+          login: 'testuser',
+          password: 'testpass',
+        })
+      }
     },
   },
 
