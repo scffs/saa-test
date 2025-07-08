@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { useAccountStore } from '@/stores/account.ts'
+import AccountRow from '@/components/AccountRow.vue'
+
+const accountStore = useAccountStore()
+accountStore.initDefaultAccount()
+
+const handleAddAccount = () => {
+  accountStore.addAccount()
+}
+</script>
+
 <template>
   <main>
     <div class="header">
@@ -10,8 +22,8 @@
         <i class="pi pi-question"></i>
       </template>
       Для указания нескольких меток для одной пары логин/пароль используйте разделитель
-      <code>;</code></Message
-    >
+      <code>;</code>
+    </Message>
 
     <div class="row header-row">
       <span class="cell tags">Метки</span>
@@ -24,18 +36,6 @@
     <AccountRow v-for="account in accountStore.accounts" :key="account.id" :account="account" />
   </main>
 </template>
-
-<script setup lang="ts">
-import { useAccountStore } from '@/stores/account.ts'
-import AccountRow from '@/components/AccountRow.vue'
-
-const accountStore = useAccountStore()
-accountStore.initDefaultAccount()
-
-const handleAddAccount = () => {
-  accountStore.addAccount()
-}
-</script>
 
 <style scoped>
 main {
